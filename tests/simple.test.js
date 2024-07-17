@@ -12,17 +12,33 @@ class Stack {
     this.top += 1;
     this.items[this.top] = value;
   }
+
+  pop() {
+    delete this.items[this.top];
+    this.top -= 1;
+  }
 }
 
 describe("My Stack", () => {
+  let stack;
+
   beforeEach(() => {
-    const stack = new Stack();
-    stack.push("1");
+    stack = new Stack();
   });
+
   it("is created empty", () => {
-    const stack = new Stack();
     expect(stack.top).toBe(-1);
   });
-  it.todo("can push items to top");
-  it.todo("can pop off");
+
+  it("can push items to top", () => {
+    stack.push(100);
+    expect(stack.peek).toBe(100);
+  });
+
+  it("can pop off", () => {
+    stack.push(12);
+    stack.push(13);
+    stack.pop();
+    expect(stack.peek).toBe(12);
+  });
 });
